@@ -7,6 +7,7 @@ WORKDIR /app
 ARG GITHUB_ACTIONS
 RUN if [ "$GITHUB_ACTIONS" != "true" ]; then \
         sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories; \
+        pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/; \
     fi
 RUN apk add --no-cache bash build-base libffi-dev openssl-dev gcompat
 
